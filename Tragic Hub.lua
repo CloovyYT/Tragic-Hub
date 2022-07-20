@@ -5,7 +5,7 @@ local logo = Instance.new("ImageLabel")
 local pfp = Instance.new("ImageLabel")
 local UICorner = Instance.new("UICorner")
 local welcome = Instance.new("TextLabel")
-local open = Instance.new("TextButton")
+local openui = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local uicred = Instance.new("TextLabel")
 local credsname = Instance.new("TextLabel")
@@ -13,7 +13,7 @@ local owncred = Instance.new("TextLabel")
 local scriptscred = Instance.new("TextLabel")
 local updname = Instance.new("TextLabel")
 local upd1 = Instance.new("TextLabel")
-local openinfo = Instance.new("TextLabel")
+local openuiinfo = Instance.new("TextLabel")
 local copydisc = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
 local upd2 = Instance.new("TextLabel")
@@ -38,6 +38,7 @@ local Drag = Instance.new("Frame")
 
 TragicUI.Name = "TragicUI"
 TragicUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+TragicUI.ResetOnSpawn = false
 TragicUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ShadowFrame.Name = "ShadowFrame"
@@ -88,21 +89,21 @@ welcome.TextScaled = true
 welcome.TextSize = 14.000
 welcome.TextWrapped = true
 
-open.Name = "open"
-open.Parent = TragicFrame
-open.BackgroundColor3 = Color3.fromRGB(13, 13, 13)
-open.BackgroundTransparency = 0.800
-open.Position = UDim2.new(0.317431211, 0, 0.668896317, 0)
-open.Size = UDim2.new(0, 200, 0, 50)
-open.Font = Enum.Font.SourceSansSemibold
-open.Text = "Open Hub"
-open.TextColor3 = Color3.fromRGB(255, 255, 255)
-open.TextScaled = true
-open.TextSize = 14.000
-open.TextWrapped = true
+openui.Name = "openui"
+openui.Parent = TragicFrame
+openui.BackgroundColor3 = Color3.fromRGB(13, 13, 13)
+openui.BackgroundTransparency = 0.800
+openui.Position = UDim2.new(0.317431211, 0, 0.668896317, 0)
+openui.Size = UDim2.new(0, 200, 0, 50)
+openui.Font = Enum.Font.SourceSansSemibold
+openui.Text = "Open Hub"
+openui.TextColor3 = Color3.fromRGB(255, 255, 255)
+openui.TextScaled = true
+openui.TextSize = 14.000
+openui.TextWrapped = true
 
 UICorner_2.CornerRadius = UDim.new(0, 15)
-UICorner_2.Parent = open
+UICorner_2.Parent = openui
 
 uicred.Name = "uicred"
 uicred.Parent = TragicFrame
@@ -188,19 +189,19 @@ upd1.TextSize = 14.000
 upd1.TextWrapped = true
 upd1.TextXAlignment = Enum.TextXAlignment.Left
 
-openinfo.Name = "openinfo"
-openinfo.Parent = TragicFrame
-openinfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-openinfo.BackgroundTransparency = 1.000
-openinfo.Position = UDim2.new(0.0128440373, 0, 0.892976582, 0)
-openinfo.Size = UDim2.new(0, 121, 0, 25)
-openinfo.Font = Enum.Font.SourceSansSemibold
-openinfo.Text = "Press Right Ctrl to open/close the UI."
-openinfo.TextColor3 = Color3.fromRGB(255, 255, 255)
-openinfo.TextScaled = true
-openinfo.TextSize = 14.000
-openinfo.TextWrapped = true
-openinfo.TextXAlignment = Enum.TextXAlignment.Left
+openuiinfo.Name = "openuiinfo"
+openuiinfo.Parent = TragicFrame
+openuiinfo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+openuiinfo.BackgroundTransparency = 1.000
+openuiinfo.Position = UDim2.new(0.0128440373, 0, 0.892976582, 0)
+openuiinfo.Size = UDim2.new(0, 121, 0, 25)
+openuiinfo.Font = Enum.Font.SourceSansSemibold
+openuiinfo.Text = "Press Right Ctrl to openui/close the UI."
+openuiinfo.TextColor3 = Color3.fromRGB(255, 255, 255)
+openuiinfo.TextScaled = true
+openuiinfo.TextSize = 14.000
+openuiinfo.TextWrapped = true
+openuiinfo.TextXAlignment = Enum.TextXAlignment.Left
 
 copydisc.Name = "copydisc"
 copydisc.Parent = TragicFrame
@@ -394,17 +395,17 @@ local function ZSMI_fake_script() -- TragicUI.LocalScript
 	local script = Instance.new('LocalScript', TragicUI)
 
 	local uis = game:GetService("UserInputService")
-	local opening = 0
+	local openuiing = 0
 	local tragic = script.Parent.ShadowFrame
 	
 	uis.InputBegan:Connect(function(input,gameProcessed)
 		if input.KeyCode == Enum.KeyCode.RightControl then
-			if opening == 0 then
+			if openuiing == 0 then
 				tragic:TweenPosition(UDim2.new(1, 0,0.304, 0), "Out", "Quart", 1.5, true)
-				opening = 1
-			elseif opening == 1 then
+				openuiing = 1
+			elseif openuiing == 1 then
 				tragic:TweenPosition(UDim2.new(0.127, 0,0.304, 0), "Out", "Quart", 1.5, true)
-				opening = 0
+				openuiing = 0
 			end
 		end
 	end)
@@ -437,8 +438,8 @@ local function FKAM_fake_script() -- welcome.LocalScript
 	text.Text = "Welcome, " ..player.Name.. "!"
 end
 coroutine.wrap(FKAM_fake_script)()
-local function DLZJO_fake_script() -- open.LocalScript 
-	local script = Instance.new('LocalScript', open)
+local function DLZJO_fake_script() -- openui.LocalScript 
+	local script = Instance.new('LocalScript', openui)
 
 	script.Parent.MouseButton1Click:Connect(function()
 		script.Parent.Parent.HubFrame:TweenPosition(UDim2.new(0.001, 0,-0.001, 0), "Out", "Quart", 1.5)
@@ -449,7 +450,7 @@ local function WJOMVR_fake_script() -- copydisc.LocalScript
 	local script = Instance.new('LocalScript', copydisc)
 
 	script.Parent.MouseButton1Click:Connect(function()
-		setclipboard(script.Parent.Parent.upd2link)
+		setclipboard(script.Parent.Parent.upd2link.Text)
 		game:GetService("StarterGui"):SetCore("SendNotification",{
 			Title = "Tragic Hub",
 			Text = "Copied the Discord Server link!",
