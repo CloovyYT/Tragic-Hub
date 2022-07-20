@@ -450,6 +450,11 @@ local function WJOMVR_fake_script() -- copydisc.LocalScript
 
 	script.Parent.MouseButton1Click:Connect(function()
 		setclipboard(script.Parent.Parent.upd2link)
+		game:GetService("StarterGui"):SetCore("SendNotification",{
+			Title = "Tragic Hub",
+			Text = "Copied the Discord Server link!",
+			Icon = "rbxassetid://10297418194"
+		})
 	end)
 end
 coroutine.wrap(WJOMVR_fake_script)()
